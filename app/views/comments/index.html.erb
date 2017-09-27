@@ -1,0 +1,16 @@
+<nav class="navbar">
+  <%= link_to 'Back', @photo %>
+  <h1>Comments</h1>
+</nav>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Comments</h1>
+
+<section>
+  <%= render @comments, photo: @photo %>
+</section>
+
+<br>
+
+<%= render 'form', comment: @new_comment %>
