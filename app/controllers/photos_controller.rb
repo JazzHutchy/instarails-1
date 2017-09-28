@@ -47,16 +47,15 @@ class PhotosController < ApplicationController
           format.html { redirect_to @photo }
           format.json { render :show, status: :ok, location: @photo }
           
-        if @photo.update(photo_params)
+        elsif @photo.update(photo_params)
           format.html { redirect_to @photo, notice: 'Photo was successfully updated.' }
           format.json { render :show, status: :ok, location: @photo }
         else
           format.html { render :edit }
           format.json { render json: @photo.errors, status: :unprocessable_entity }
         end
-      end
+      end  
     end
-  end
   # DELETE /photos/1
   # DELETE /photos/1.json
     def destroy
@@ -75,11 +74,12 @@ class PhotosController < ApplicationController
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def photo_params
-        params.require(:photo).permit(:image, :description)
+        params.require(:photo).permit(:image, :description, :location)
       end
 
       def is_liking?
         # Is there a 'liked' field in the form?
         params.require(:photo)[:liked].present?
       end
+
 end

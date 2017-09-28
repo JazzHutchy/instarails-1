@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
  
   devise_for :users
+  resource :profile
   resources :photos do 
     resources :comments
   end
