@@ -13,6 +13,16 @@ class User < ApplicationRecord
 
   # Does 'user' follow us?
   def followed_by?(user)
-    self.followers.exists?(user.id)
+    followers.exists?(user.id)
+  end
+
+  def toggle_followed_by(user)
+    # If currently following, we unfoloow
+    if followers.exists?(user.id)
+      followers.destroy(user)
+    # If currently not following, we follow
+    else
+      followers << user
+    end
   end
 end
